@@ -1,0 +1,64 @@
+
+
+<div [hidden]="hId!=1">
+    <form #form="ngForm" (ngSubmit)="savePatientReport()" style="margin:1em;">
+        <div class="form-group">
+            <label for="patientProblem">patientProblem</label>
+            <input type="text" class="form-control" id="patientProblem" name="patientProblem"[(ngModel)]="model.patientProblem">
+        </div>
+        <div class="form-group">
+            <label for="medicalTest">medicalTest</label>
+            <input type="text" class="form-control" id="medicalTest"name="medicalTest"[(ngModel)]="model.medicalTest">
+        </div>
+        <div class="form-group">
+            <label for="medicalResult">medicalResult</label>
+            <input type="text" class="form-control" id="medicalResult"name="medicalResult"[(ngModel)]="model.medicalResult">
+        </div>
+        <div class="form-group">
+            <label for="date">date</label>
+            <input type="date" class="form-control" id="date"name="date"[(ngModel)]="model.date">
+        </div>
+        <div class="form-group">
+            <label for="patientId">patientId</label>
+            <input type="text" class="form-control" id="patientId"name="patientId"[(ngModel)]="model.patientId">
+        </div>
+        <div class="form-group" style="margin:1em;">
+            <input type="submit" value="Save" class="btn btn-primary">
+        </div>
+        <a (click)="backToList()" class="btn btn-secondary" style="margin:1em;">
+            Back To List
+        </a>
+    </form>
+</div>
+
+<div [hidden]="hId!=0">
+    <button style="margin:10px;" mat-raised-button color="primary" [style.cursor]="'pointer'" routerLink="#" (click)="addPatientBillHId()">AddPatientReport</button> 
+    <br>
+    <div>
+        <input [(ngModel)]="searchId" type="text" placeholder="Enter Patient ID" style="margin:2em;height:50px;weight:200px;">
+    </div>
+    <div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">patientProblem</th>
+            <th scope="col">medicalTest</th>
+            <th scope="col">medicalResult</th>
+            <th scope="col">date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let data of patientReports">
+          
+            <tr *ngIf="data.patientId==searchId" >
+                <td >{{data.id}}</td>
+                <td>{{data.patientProblem}}</td>
+                <td>{{data.medicalTest}}</td>
+                <td>{{data.medicalResult}}</td>
+                <td>{{data.date}}</td>
+
+            </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

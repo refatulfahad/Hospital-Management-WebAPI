@@ -1,0 +1,71 @@
+<!-- <span [style.cursor]="'pointer'" routerLink="doctor-list" (click)="addDoctorHId()">AddDoctor</span> -->
+
+<div [hidden]="hId!=0">
+    <button style="margin:10px;" mat-raised-button color="primary" [style.cursor]="'pointer'" routerLink="doctor-list" (click)="addDoctorHId()">AddDoctor</button> 
+<table class="table" style="margin:2em;">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phn_Number</th>
+        <th scope="col">Specialist</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of doctors">
+        <td >{{data.id}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.phnNumber}}</td>
+        <td>{{data.specialist}}</td>
+        <td>
+            <button mat-raised-button color="warn" (click)="deleteDoctor(data.id)">Delete</button> 
+         </td>
+         <td>
+            <button mat-raised-button color="primary" (click)="updateDoctor(data)">Edit</button> 
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div [hidden]="hId!=1">
+    <form [formGroup]="doctorForm" (ngSubmit)="saveBook()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name"formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="phnNumber">phnNumber</label>
+            <input type="text" class="form-control" id="phnNumber"name="phnNumber"formControlName="phnNumber">
+        </div>
+        <div class="form-group">
+            <label for="specialist">specialist</label>
+            <input type="text" class="form-control" id="specialist"name="specialist"formControlName="specialist">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary">
+        </div>
+    </form>
+</div> -->
+<div [hidden]="hId!=1">
+    <form #form="ngForm" (ngSubmit)="saveBook()" style="margin:2em;">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name"[(ngModel)]="model.name">
+        </div>
+        <div class="form-group">
+            <label for="phnNumber">PhnNumber:</label>
+            <input type="text" class="form-control" id="phnNumber"name="phnNumber"[(ngModel)]="model.phnNumber">
+        </div>
+        <div class="form-group">
+            <label for="specialist">Specialist:</label>
+            <input type="text" class="form-control" id="specialist"name="specialist"[(ngModel)]="model.specialist">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" style="margin:1em ;">
+        </div>
+        <a (click)="backToList()" class="btn btn-secondary" >
+            Back To List
+        </a>
+    </form>
+</div>

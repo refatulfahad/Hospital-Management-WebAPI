@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="navbar">
+  <div [style.cursor]="'pointer'" routerLink="/">Hospital Management</div>
+  <div>
+     <span [style.cursor]="'pointer'" routerLink="doctor-list">Doctor</span>
+     <span [style.cursor]="'pointer'" routerLink="patient-list">Patient</span>
+     <span [style.cursor]="'pointer'" routerLink="patientBill-list">Patient Bill</span>
+     <span [style.cursor]="'pointer'" routerLink="patientMedicalReport-list">Medical Report</span>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

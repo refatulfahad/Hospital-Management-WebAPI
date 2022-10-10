@@ -1,0 +1,123 @@
+<!-- <span [style.cursor]="'pointer'" routerLink="#" (click)="addPatienthId()" >AddPatient</span> -->
+
+<div [hidden]="hId!=0">
+  <button style="margin:10px;" mat-raised-button color="primary" [style.cursor]="'pointer'" routerLink="#" (click)="addPatienthId()">AddPatient</button> 
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Age</th>
+        <th scope="col">Phn_Number</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of patients">
+        <td >{{data.id}}</td>
+        <td>{{data.name}}</td>        
+        <td>{{data.gender}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.phnNumber}}</td>
+        <td>
+          
+            <button mat-raised-button color="accent" (click)="detailsDoctor(data.id)">Details</button> 
+         </td>
+         <td>
+            <button mat-raised-button color="primary" (click)="updatePatient(data)">Edit</button> 
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div [hidden]="hId!=1" >
+    <form #form="ngForm" (ngSubmit)="saveBook()" style="margin:2em;">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name"[(ngModel)]="model.name">
+        </div>
+        <!-- <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="text" class="form-control" id="gender"name="gender"[(ngModel)]="model.gender">
+        </div> -->
+
+        <mat-form-field>
+          <mat-label>
+            Gender:
+          </mat-label>
+          <mat-select [(value)]="model.gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="text" class="form-control" id="age"name="age"[(ngModel)]="model.age">
+        </div>
+        <div class="form-group">
+            <label for="phnNumber">PhnNumber:</label>
+            <input type="text" class="form-control" id="phnNumber"name="phnNumber"[(ngModel)]="model.phnNumber">
+        </div>
+
+        <form [formGroup]="dropDownForm">
+            <!-- [formGroup]="dropDownForm" -->
+        <div style="width:100%">
+             Select Doctor's Id For Appointment:
+                <!-- <label for="appointmentList">appointmentList</label> formControlName="myItems"-->
+            <!-- [(ngModel)]="model.doctorId"  formControlName="myItems"-->
+             <ng-multiselect-dropdown 
+                
+                formControlName="myItems"
+                [placeholder]="'Select ID'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)">
+
+            </ng-multiselect-dropdown> 
+            
+        </div> 
+    </form>
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Toppings</mat-label>
+            <mat-select [formControl]="toppings" multiple>
+              <mat-option *ngFor="let topping of doctors" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+        <div class="form-group" >
+            <input type="submit" value="Save" class="btn btn-primary" style="margin:1em ;">
+        </div>
+        <a (click)="backToList()" class="btn btn-secondary" >
+          Back To List
+        </a>
+    </form>
+</div>
+
+<div [hidden]="hId!=2">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phn_Number</th>  
+            <th scope="col">specialist</th>      
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of detailsDoctors">
+            <td >{{data.id}}</td>
+            <td>{{data.name}}</td>        
+            <td>{{data.phnNumber}}</td>
+            <td>{{data.specialist}}</td> 
+          </tr>
+        </tbody>
+        <a (click)="backToList()" class="btn btn-secondary" style="margin:1em;">
+          Back To List
+        </a>
+      </table>
+    </div>
