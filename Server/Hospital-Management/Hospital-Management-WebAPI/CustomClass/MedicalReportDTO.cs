@@ -2,7 +2,7 @@
 
 namespace Hospital_Management_WebAPI.CustomClass
 {
-    public class MedicalReport1
+    public class MedicalReportDTO
     {
         public string patientProblem { get; set; }
         public string medicalTest { get; set; }

@@ -25,7 +25,7 @@ namespace Hospital_Management_WebAPI.Controllers
         }
         [HttpPost]
         //[Produces(typeof(patient1))]
-        public Patient addPatient(patient1 patient)
+        public Patient addPatient(patientDTO patient)
         {
 
             Patient data = new Patient
@@ -62,7 +62,7 @@ namespace Hospital_Management_WebAPI.Controllers
             return Ok(data);
         }
         [HttpPut("{id}")]
-        public IActionResult updatePatient(int id,patient1 patient)
+        public IActionResult updatePatient(int id,patientDTO patient)
         {
             var data=applicationDbContext.tbl_Patients.FirstOrDefault(x => x.id == id);
             if (patient.name != null) {data.name=patient.name;}

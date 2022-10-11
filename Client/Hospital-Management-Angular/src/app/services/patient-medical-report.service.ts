@@ -11,7 +11,7 @@ export class PatientMedicalReportService {
   addPatientReport(model:any):Observable<any>{
     return this.http.post("http://localhost:5213/api/MedicalReport",model);
   }
-  getPatientReports():Observable<any>{
-    return this.http.get("http://localhost:5213/api/MedicalReport");
+  getPatientReports(id:string):Observable<any>{
+    return this.http.get("http://localhost:5213/api/MedicalReport/"+id);
   }
 }

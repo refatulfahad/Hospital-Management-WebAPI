@@ -21,10 +21,10 @@ export class PatientBillComponent implements OnInit {
    }
 
   ngOnInit(): void {   
-      this.service.getPatientBills().subscribe((data)=>{
-        console.warn("data",data);      
-        this.patientBills=data
-      });
+      // this.service.getPatientBills().subscribe((data)=>{
+      //   console.warn("data",data);      
+      //   this.patientBills=data
+      // });
   }
   addPatientBillHId(){
     this.hId=1;
@@ -40,5 +40,12 @@ export class PatientBillComponent implements OnInit {
   }
   backToList(){
     this.hId=0;
+  }
+  OnSubmit(id:string){
+      console.log(id);
+      this.service.getPatientBills(id).subscribe((data)=>{
+        console.warn("data",data);      
+        this.patientBills=data
+      });
   }
 }

@@ -17,7 +17,7 @@ namespace Hospital_Management_WebAPI.Controllers
             this.applicationDbContext = applicationDbContext;
         }
         [HttpPost]
-        public IActionResult addMedicalReport(MedicalReport1 medicalReport)
+        public IActionResult addMedicalReport(MedicalReportDTO medicalReport)
         {
             var data = new MedicalReport
             {
@@ -31,11 +31,11 @@ namespace Hospital_Management_WebAPI.Controllers
             applicationDbContext.SaveChanges();
             return Ok();
         }
-        [HttpGet]
-        public IActionResult searchMedicalReport()
+        [HttpGet("{id}")]
+        public IActionResult searchMedicalReport(int id)
         {
             var data = (from a in applicationDbContext.tbl_medicalReports
-                        select a);
+                        where a.patientId==id select a);
             return Ok(data);
         }
     }

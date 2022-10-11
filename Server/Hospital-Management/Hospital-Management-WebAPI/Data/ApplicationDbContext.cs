@@ -10,7 +10,7 @@ namespace Hospital_Management_WebAPI.Data
         {
 
         }
-        public DbSet<Doctor> tbl_Doctors { get; set; }
+        public DbSet<DoctorVM> tbl_Doctors { get; set; }
         public DbSet<Patient> tbl_Patients { get; set; }
         public DbSet<PatientDoctor> tbl_PatientDoctor { get; set; }
         public DbSet<PatientBill> tbl_PatientBill { get; set; }

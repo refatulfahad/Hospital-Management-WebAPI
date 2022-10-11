@@ -18,10 +18,10 @@ export class PatientMedicalReportComponent implements OnInit {
   searchId:string="";
   patientReports:any;
   constructor(private service:PatientMedicalReportService) {
-    service.getPatientReports().subscribe((data)=>{
-      console.warn("data",data);      
-      this.patientReports=data
-    });
+    // service.getPatientReports().subscribe((data)=>{
+    //   console.warn("data",data);      
+    //   this.patientReports=data
+    // });
    }
 
   ngOnInit(): void {
@@ -41,4 +41,10 @@ export class PatientMedicalReportComponent implements OnInit {
   backToList(){
     this.hId=0;
   }
+  OnSubmit(id:string){
+    this.service.getPatientReports(id).subscribe((data)=>{
+      console.warn("data",data);      
+      this.patientReports=data
+    });
+}
 }

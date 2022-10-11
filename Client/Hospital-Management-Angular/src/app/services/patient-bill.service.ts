@@ -11,7 +11,7 @@ export class PatientBillService {
   addPatientBill(model:any):Observable<any>{
     return this.http.post("http://localhost:5213/api/PatientBill",model);
   }
-  getPatientBills():Observable<any>{
-    return this.http.get("http://localhost:5213/api/PatientBill");
+  getPatientBills(id:string):Observable<any>{
+    return this.http.get("http://localhost:5213/api/PatientBill/"+id);
   }
 }

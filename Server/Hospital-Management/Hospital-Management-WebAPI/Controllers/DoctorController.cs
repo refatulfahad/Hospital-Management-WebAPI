@@ -18,15 +18,15 @@ namespace Hospital_Management_WebAPI.Controllers
             this.applicationDbContext = applicationDbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> getDoctorList()
+        public async Task<IActionResult> GetDoctorList()
         {
             var result = await applicationDbContext.tbl_Doctors.ToListAsync();
             return Ok(result);
         }
         [HttpPost]
-        public async Task<IActionResult> addDoctor([FromBody] Doctor1 doctor)
+        public async Task<IActionResult> AddDoctor([FromBody] DoctorDTO doctor)
         {
-            var data = new Doctor()
+            var data = new DoctorVM()
             {
                 name = doctor.name,
                 phnNumber = doctor.phnNumber,
@@ -37,7 +37,7 @@ namespace Hospital_Management_WebAPI.Controllers
             return Ok(doctor);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> updateDoctor([FromRoute]int id, Doctor1 doctor)
+        public async Task<IActionResult> UpdateDoctor([FromRoute]int id, DoctorDTO doctor)
         {
             var data=await applicationDbContext.tbl_Doctors.FindAsync(id);
             if (data != null)
@@ -63,7 +63,7 @@ namespace Hospital_Management_WebAPI.Controllers
             return NotFound();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> deleteDoctor([FromRoute]int id)
+        public async Task<IActionResult> DeleteDoctor([FromRoute]int id)
         {
             var data = await applicationDbContext.tbl_Doctors.FindAsync(id);
             if(data != null)

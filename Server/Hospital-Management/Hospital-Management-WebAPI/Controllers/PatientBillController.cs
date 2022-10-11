@@ -17,7 +17,7 @@ namespace Hospital_Management_WebAPI.Controllers
             this.applicationDbContext = applicationDbContext;
         }
         [HttpPost]
-        public IActionResult addPatientBill(PatientBill1 patientBill)
+        public IActionResult addPatientBill(PatientBillDTO patientBill)
         {
             var data = new PatientBill
             {
@@ -30,13 +30,14 @@ namespace Hospital_Management_WebAPI.Controllers
             applicationDbContext.SaveChanges();
             return Ok();
         }
-        [HttpGet]//("{id}")
-        public IActionResult searchPatientBill()
+        [HttpGet("{id}")]//("{id}")
+        public IActionResult searchPatientBill(int id)
         {
-            //var data=(from a in applicationDbContext.tbl_PatientBill
-            //         where a.patientId == id select a);
             var data = (from a in applicationDbContext.tbl_PatientBill
+                        where a.patientId == id
                         select a);
+            //var data = (from a in applicationDbContext.tbl_PatientBill
+            //            select a);
             return Ok(data);
         }
        //[HttpPut("{id}")]

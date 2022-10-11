@@ -36,6 +36,9 @@
     <br>
     <div>
         <input [(ngModel)]="searchId" type="text" placeholder="Enter Patient ID" style="margin:2em;height:50px;weight:200px;">
+        <a (click)="OnSubmit(searchId)" class="btn btn-primary" style="margin:1em;">
+            Submit
+        </a>
     </div>
     <div>
     <table class="table">
@@ -50,7 +53,7 @@
         </thead>
         <tbody *ngFor="let data of patientReports">
           
-            <tr *ngIf="data.patientId==searchId" >
+            <tr>
                 <td >{{data.id}}</td>
                 <td>{{data.patientProblem}}</td>
                 <td>{{data.medicalTest}}</td>
